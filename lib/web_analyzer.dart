@@ -349,7 +349,7 @@ class WebAnalyzer {
 
     if (description.contains('JavaScript is disabled in your browser'))
       return '';
-    return description;
+    return description.substring(description.indexOf('-'), 300);
   }
 
   static String _analyzeIcon(Document document, Uri uri) {
