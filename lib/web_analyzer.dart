@@ -329,7 +329,8 @@ class WebAnalyzer {
   static String _analyzeDescription(Document document, String html) {
     final desc = _getMetaContent(document, "property", "og:description");
     if (desc != null &&
-        !desc.contains('JavaScript is disabled in your browser')) return desc;
+        !desc.contains('JavaScript is disabled in your browser'))
+      return desc.substring(desc.indexOf('-'), desc.length);
 
     final description = _getMetaContent(document, "name", "description") ??
         _getMetaContent(document, "name", "Description");
@@ -348,7 +349,7 @@ class WebAnalyzer {
 
     if (description.contains('JavaScript is disabled in your browser'))
       return '';
-    return description.substring(description.indexOf('-'));
+    return description;
   }
 
   static String _analyzeIcon(Document document, Uri uri) {
