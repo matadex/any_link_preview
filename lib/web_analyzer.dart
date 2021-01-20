@@ -330,7 +330,7 @@ class WebAnalyzer {
     final desc = _getMetaContent(document, "property", "og:description");
     if (desc != null &&
         !desc.contains('JavaScript is disabled in your browser'))
-      return desc.substring(desc.indexOf('-'), desc.length);
+      return desc.substring(desc.indexOf('-') + 2, desc.length);
 
     final description = _getMetaContent(document, "name", "description") ??
         _getMetaContent(document, "name", "Description");
@@ -340,7 +340,7 @@ class WebAnalyzer {
       String body = html.replaceAll(_htmlReg, "");
       body = body.trim().replaceAll(_lineReg, " ").replaceAll(_spaceReg, " ");
       if (body.length > 300) {
-        body = body.substring(body.indexOf('-'), 300);
+        body = body.substring(body.indexOf('-') + 2, 300);
       }
       // print("html cost ${DateTime.now().difference(start).inMilliseconds}");
       if (body.contains('JavaScript is disabled in your browser')) return '';
@@ -349,7 +349,7 @@ class WebAnalyzer {
 
     if (description.contains('JavaScript is disabled in your browser'))
       return '';
-    return description.substring(description.indexOf('-'), 300);
+    return description.substring(description.indexOf('-') + 2, 300);
   }
 
   static String _analyzeIcon(Document document, Uri uri) {
