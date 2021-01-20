@@ -316,8 +316,8 @@ class WebAnalyzer {
 
   static String _analyzeTitle(Document document, {bool isTwitter = false}) {
     if (isTwitter) return "";
-    final title = _getMetaContent(document, "property", "og:title");
-    if (title != null) return title;
+    final title = _getMetaContent(document, "property", "og:description");
+    if (title != null) return title.substring(0, title.indexOf('-'));
     final list = document.head.getElementsByTagName("title");
     if (list.isNotEmpty) {
       final tagTitle = list.first.text;

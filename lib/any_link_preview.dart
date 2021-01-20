@@ -246,7 +246,9 @@ class _AnyLinkPreviewState extends State<AnyLinkPreview> {
                 : _errorBody,
             image: WebAnalyzer.isNotEmpty(info.image)
                 ? info.image
-                : WebAnalyzer.isNotEmpty(info.icon) ? info.icon : _errorImage,
+                : WebAnalyzer.isNotEmpty(info.icon)
+                    ? info.icon
+                    : _errorImage,
             isIcon: WebAnalyzer.isNotEmpty(info.image) ? false : true,
           );
   }
