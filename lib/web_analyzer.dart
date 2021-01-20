@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:html';
 import 'dart:io';
 import 'dart:isolate';
 
@@ -340,7 +341,7 @@ class WebAnalyzer {
       String body = html.replaceAll(_htmlReg, "");
       body = body.trim().replaceAll(_lineReg, " ").replaceAll(_spaceReg, " ");
       if (body.length > 300) {
-        body = body.substring(0, 300);
+        body = body.substring(body.indexOf('-'), 300);
       }
       // print("html cost ${DateTime.now().difference(start).inMilliseconds}");
       if (body.contains('JavaScript is disabled in your browser')) return '';
